@@ -5,13 +5,14 @@
 <img src="https://s2.postimg.org/6g31wfeo9/Screen_Shot_2017-06-02_at_8.54.21_AM.png" width="750"/>
 <img src="https://s11.postimg.org/t85gn6f2b/Screen_Shot_2017-06-02_at_8.56.06_AM.png" width="750"/>
 
-This package provides a jupyter notebook cell magic `%%notify` that notifies the user upon completion of a potentially long-running cell.  It makes use of browser push notifications and has currently been tested in Chrome and Firefox (Firefox also makes an audible bell sounds when the notification fires).  Use cases include long-running machine learning models or grid searches, or long-running spark computations.  This magic allows you to navigate away to other work (and even another Mac desktop entirely) and still get a notification when your cell completes.
+This package provides a jupyter notebook cell magic `%%notify` that notifies the user upon completion of a potentially long-running cell.  It makes use of browser push notifications and has currently been tested in Chrome and Firefox (Firefox also makes an audible bell sound when the notification fires).  Use cases include long-running machine learning models or grid searches, or long-running spark computations.  This magic allows you to navigate away to other work (and even another Mac desktop entirely) and still get a notification when your cell completes.
 
 ## Installation
 ```
 git clone https://github.com/ShopRunner/jupyter-notify.git
 cd jupyter-notify/
 pip install -r requirements.txt
+python setup.py install
 jupyter notebook
 ```
 
