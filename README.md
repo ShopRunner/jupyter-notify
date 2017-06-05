@@ -1,4 +1,4 @@
-<img src="https://www.shoprunner.com/static/frontweb/V2/logos/sr_inline.svg" width="300"/>
+<img src="https://s3.amazonaws.com/shoprunner-github-logo/shoprunner-logo.svg" width="300"/>
 
 # A Jupyter Magic For Browser Notifications of Cell Completion
 
