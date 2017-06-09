@@ -19,5 +19,6 @@ setup(
     author_email='mdagostino@shoprunner.com',
     url='https://github.com/shoprunner/jupyter-notify',
     license=license,
-    packages=find_packages(exclude=('tests', 'docs'))
+    packages=find_packages(exclude=('tests', 'docs')),
+    data_files=[('js', ['js/init.js', 'js/notify.js'])]
 )
