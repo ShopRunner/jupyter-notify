@@ -13,7 +13,7 @@ class JupyterNotifyMagics(Magics):
             """
             if (!("Notification" in window)) {
                 alert("This browser does not support desktop notifications, so the %%notify magic will not work.");
-            } else if (Notification.permission !== 'granted' & Notification.permission !== 'denied') {
+            } else if (Notification.permission !== 'granted' && Notification.permission !== 'denied') {
                 Notification.requestPermission(function (permission) {
                     if(!('permission' in Notification)) {
                         Notification.permission = permission;
@@ -34,6 +34,20 @@ class JupyterNotifyMagics(Magics):
         # display our browser notification using javascript
         jsString = """
             $(document).ready(
+                var notification_uuid ="%(notification_uuid)s";
+
+                var Widget = { };
+                Widget.create = function(document) {
+                    var notificationPayload = {
+                                icon: "/static/base/images/favicon.ico",
+                                body: "Cell Execution Has Finished!!",
+                    }
+                    var notification = new Notification("Jupyter Notebook", notificationPayload)
+                    var notifiedDiv = document.createElement("div")
+                    notifiedDiv.id = notification_uuid;
+                    document.body.append(notifiedDiv)
+                };
+
                 function() {
                     // only send notifications if the pageload is complete; this will
                     // help stop extra notifications when a saved notebook is loaded,
@@ -41,11 +55,7 @@ class JupyterNotifyMagics(Magics):
                     if (document.readyState === 'complete') {
                         // check for the div that signifies that the notification
                         // was already sent
-                        if (document.getElementById("%s") === null) {
-                            var notificationPayload = {
-                                icon: "/static/base/images/favicon.ico",
-                                body: "Cell Execution Has Finished!!",
-                            }
+                        if (document.getElementById(notification_uuid) === null) {
                             if (Notification.permission !== 'denied') {
                                 if (Notification.permission !== 'granted') { 
                                     Notification.requestPermission(function (permission) {
@@ -53,21 +63,15 @@ class JupyterNotifyMagics(Magics):
                                             Notification.permission = permission
                                         }
                                         if (Notification.permission === 'granted') { 
-                                            var notification = new Notification("Jupyter Notebook", notificationPayload)
                                             // append a div with our uuid so we can check that it's already
                                             // been sent and avoid duplicates on page reload
-                                            var notifiedDiv = document.createElement("div")
-                                            notifiedDiv.id = "%s"
-                                            element.append(notifiedDiv)
+                                            Widget.create(document);    
                                         }
                                     })
                                 } else if (Notification.permission === 'granted') { 
-                                    var notification = new Notification("Jupyter Notebook", notificationPayload)
                                     // append a div with our uuid so we can check that it's already
                                     // been sent and avoid duplicates on page reload
-                                    var notifiedDiv = document.createElement("div")
-                                    notifiedDiv.id = "%s"
-                                    element.append(notifiedDiv)
+                                    Widget.create(document);
                                 }
                             }
                         }
@@ -75,7 +79,7 @@ class JupyterNotifyMagics(Magics):
                 }
             )
             """
-        display(Javascript(jsString % (notification_uuid, notification_uuid, notification_uuid)))
+        display(Javascript(jsString % ({"notification_uuid":notification_uuid})))
 
         # finally, if we generated an exception, print the traceback
         if output.error_in_exec is not None:
