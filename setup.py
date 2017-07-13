@@ -20,5 +20,9 @@ setup(
     url='https://github.com/shoprunner/jupyter-notify',
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
-    data_files=[('js', ['js/init.js', 'js/notify.js'])]
+    data_files=[('js', ['js/init.js', 'js/notify.js'])],
+    install_requires=[
+        'ipython',
+        'jupyter'
+    ]
 )

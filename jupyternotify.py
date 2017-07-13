@@ -1,10 +1,12 @@
 # see https://ipython.org/ipython-doc/3/config/custommagics.html
 # for more details on the implementation here
 import uuid
+
 from IPython.core.getipython import get_ipython
 from IPython.core.magic import Magics, magics_class, cell_magic
 from IPython.display import display, Javascript
 from pkg_resources import resource_filename
+
 
 @magics_class
 class JupyterNotifyMagics(Magics):
@@ -13,7 +15,7 @@ class JupyterNotifyMagics(Magics):
         with open(resource_filename("jupyternotify", "js/init.js")) as jsFile:
             jsString = jsFile.read()
         display(Javascript(jsString))
-    
+
     @cell_magic
     def notify(self, line, cell):
         # generate a uuid so that we only deliver this notification once, not again
