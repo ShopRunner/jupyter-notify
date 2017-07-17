@@ -1,0 +1,1 @@
+from .jupyternotify import JupyterNotifyMagics
