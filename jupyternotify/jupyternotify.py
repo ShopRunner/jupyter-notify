@@ -11,7 +11,7 @@ from pkg_resources import resource_filename
 @magics_class
 class JupyterNotifyMagics(Magics):
     def __init__(self, shell):
-        super().__init__(shell)
+        super(JupyterNotifyMagics, self).__init__(shell)
         with open(resource_filename("jupyternotify", "js/init.js")) as jsFile:
             jsString = jsFile.read()
         display(Javascript(jsString))
