@@ -19,7 +19,7 @@ git+ssh://git@github.com/ShopRunner/jupyter-notify.git#egg=jupyternotify
 
 ## Install locally
 ``` bash
-git clone git@github.com:ShopRunner/jupyter-notify.git
+git clone https://github.com/ShopRunner/jupyter-notify.git
 cd jupyter-notify/
 virtualenv venv
 source venv/bin/activate
