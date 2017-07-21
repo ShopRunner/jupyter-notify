@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
+
 from setuptools import find_packages, setup
 
-
-with open('README.md') as f:
+with open('README.rst') as f:
     readme = f.read()
 
 with open('LICENSE.txt') as f:
@@ -11,7 +11,7 @@ with open('LICENSE.txt') as f:
 
 setup(
     name='jupyternotify',
-    version='0.1.0',
+    version='0.1.2',
     description='A Jupyter Notebook %%magic for Browser Notifications of Cell Completion',
     long_description=readme,
     author='Michelangelo D\'Agostino',
@@ -20,7 +20,6 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests', 'docs')),
     package_data={'jupyternotify': ['js/*.js']},
-    include_package_data=True,
     install_requires=[
         'ipython',
         'jupyter'
