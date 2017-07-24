@@ -2,8 +2,8 @@
 
 from setuptools import find_packages, setup
 
-with open('README.rst') as f:
-    readme = f.read()
+with open('README.rst') as r:
+    readme = r.read()
 
 with open('AUTHORS.txt') as a:
     # reSt-ify the authors list
@@ -11,8 +11,8 @@ with open('AUTHORS.txt') as a:
     for author in a.read().split('\n'):
         authors += '| '+author+'\n'
 
-with open('LICENSE.txt') as f:
-    license = f.read()
+with open('LICENSE.txt') as l:
+    license = l.read()
 
 setup(
     name='jupyternotify',
