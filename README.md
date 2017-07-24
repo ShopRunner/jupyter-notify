@@ -13,11 +13,16 @@ The extension has currently been tested in Chrome (Version:  58.0.3029) and Fire
 Note: Firefox also makes an audible bell sound when the notification fires (the sound can be turned off in OS X as described [here](https://stackoverflow.com/questions/27491672/disable-default-alert-sound-for-firefox-web-notifications)).
 
 ## Import the repo
-To use the package, add it to the requirements.txt of your repo and pip install
+To use the package, install it via pip directly:
 
-git+ssh://git@github.com/ShopRunner/jupyter-notify.git#egg=jupyternotify
+```
+pip install jupyternotify
+```
 
-## Install locally
+or add it to the requirements.txt of your repo.
+
+To install directly from source:
+
 ``` bash
 git clone git@github.com:ShopRunner/jupyter-notify.git
 cd jupyter-notify/

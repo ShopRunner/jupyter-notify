@@ -10,10 +10,10 @@ html: README.rst
 
 pypi-test: clean rst
 	python setup.py sdist
-	# twine upload dist/* -r testpypi
-	python setup.py sdist upload -r testpypi
+	twine upload dist/* -r testpypi
+	#python setup.py sdist upload -r testpypi
 
 pypi-prod: clean rst
 	python setup.py sdist
-	# twine upload dist/*
-	python setup.py sdist upload
+	twine upload dist/*
+	#python setup.py sdist upload

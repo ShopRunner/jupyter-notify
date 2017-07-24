@@ -21,13 +21,15 @@ fires (the sound can be turned off in OS X as described
 Import the repo
 ---------------
 
-To use the package, add it to the requirements.txt of your repo and pip
-install
+To use the package, install it via pip directly:
 
-git+ssh://git@github.com/ShopRunner/jupyter-notify.git#egg=jupyternotify
+::
 
-Install locally
----------------
+    pip install jupyternotify
+
+or add it to the requirements.txt of your repo.
+
+To install directly from source:
 
 .. code:: bash
 
