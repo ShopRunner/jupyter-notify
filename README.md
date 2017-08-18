@@ -58,3 +58,21 @@ To test the extension, try
 import time
 time.sleep(5)
 ```
+
+## Options
+
+You may specify options while loading the magic:
+
+```python
+import jupyternotify
+ip = get_ipython()
+ip.register_magics(jupyternotify.JupyterNotifyMagics(
+    ip,
+    option_name="option_value"
+))
+```
+
+The following options exist:
+- `require_interaction` - Boolean, default False. When this is true,
+  notifications will remain on screen until dismissed. This feature is currently
+  only available in Google Chrome.
