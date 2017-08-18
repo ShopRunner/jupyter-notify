@@ -74,4 +74,5 @@ ip.register_magics(jupyternotify.JupyterNotifyMagics(
 
 The following options exist:
 - `require_interaction` - Boolean, default False. When this is true,
-  notifications will remain on screen until dismissed.
+  notifications will remain on screen until dismissed. This feature is currently
+  only available in Google Chrome.
