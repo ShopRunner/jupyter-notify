@@ -66,11 +66,12 @@ You may specify options while loading the magic:
 ```python
 import jupyternotify
 ip = get_ipython()
-ip.register_magics(jupyternotify.JupyterNotifyMagics(ip,
+ip.register_magics(jupyternotify.JupyterNotifyMagics(
+    ip,
     option_name="option_value"
 ))
 ```
 
 The following options exist:
 - `require_interaction` - Boolean, default False. When this is true,
-  notifications will remain on screen untill dismissed.
+  notifications will remain on screen until dismissed.

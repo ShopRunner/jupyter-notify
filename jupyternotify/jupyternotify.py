@@ -17,9 +17,9 @@ class JupyterNotifyMagics(Magics):
             jsString = jsFile.read()
         display(Javascript(jsString))
         self.options = json.dumps({
-            'requireInteraction': require_interaction,
-            'body': 'Cell Execution Has Finished!!',
-            'icon': '/static/base/images/favicon.ico',
+            "requireInteraction": require_interaction,
+            "body": "Cell Execution Has Finished!!",
+            "icon": "/static/base/images/favicon.ico",
         })
 
     @cell_magic
