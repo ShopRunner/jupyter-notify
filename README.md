@@ -76,3 +76,13 @@ The following options exist:
 - `require_interaction` - Boolean, default False. When this is true,
   notifications will remain on screen until dismissed. This feature is currently
   only available in Google Chrome.
+  
+ ## Custom Message
+
+You may specify what message you wish the notification to display:
+
+```
+%%notify "sleep for 5 secs"
+import time
+time.sleep(5)
+```
