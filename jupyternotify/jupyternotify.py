@@ -12,7 +12,7 @@ from pkg_resources import resource_filename
 
 @magics_class
 class JupyterNotifyMagics(Magics):
-    def __init__(self, shell, require_interaction=False,):
+    def __init__(self, shell, require_interaction=False):
         super(JupyterNotifyMagics, self).__init__(shell)
         with open(resource_filename("jupyternotify", "js/init.js")) as jsFile:
             jsString = jsFile.read()
@@ -35,6 +35,7 @@ class JupyterNotifyMagics(Magics):
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
         notification_uuid = uuid.uuid4()
+
         output = get_ipython().run_cell(cell)
 
         # display our browser notification using javascript
