@@ -4,8 +4,8 @@ import json
 import uuid
 
 from IPython.core.getipython import get_ipython
-from IPython.core.magic import Magics, magics_class, cell_magic
-from IPython.core.magic_arguments import magic_arguments, argument, parse_argstring 
+from IPython.core.magic import cell_magic, Magics, magics_class
+from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from IPython.display import display, Javascript
 from pkg_resources import resource_filename
 
@@ -23,14 +23,18 @@ class JupyterNotifyMagics(Magics):
         }
 
     @magic_arguments()
-    @argument("message", nargs="?", default="Cell Execution Has Finished!!",
-          help="Custom notification message")
+    @argument(
+        "message", 
+        nargs="?",
+        default="Cell Execution Has Finished!!", 
+        help="Custom notification message"
+    )
     @cell_magic
     def notify(self, line, cell):
 
-       # custom message
+        # custom message
         args = parse_argstring(self.notify, line)
-        self.options["body"] = args.message
+        self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")       
 
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
