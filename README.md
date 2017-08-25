@@ -82,7 +82,9 @@ The following options exist:
 You may specify what message you wish the notification to display:
 
 ```
-%%notify "sleep for 5 secs"
+%%notify -m "sleep for 5 secs"
 import time
 time.sleep(5)
 ```
+
+<img src="https://s30.postimg.org/e0v1jbo8h/custom_message_img.png" alt="Jupyter notebook notification with custom message" width="750"/>
