@@ -77,7 +77,7 @@ The following options exist:
   notifications will remain on screen until dismissed. This feature is currently
   only available in Google Chrome.
   
- ## Custom Message
+## Custom Message
 
 You may specify what message you wish the notification to display:
 
