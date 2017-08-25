@@ -24,8 +24,8 @@ class JupyterNotifyMagics(Magics):
 
     @magic_arguments()
     @argument(
-        "message", 
-        nargs="?",
+        "-m",
+        "--message",
         default="Cell Execution Has Finished!!", 
         help="Custom notification message"
     )
