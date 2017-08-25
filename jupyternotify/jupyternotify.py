@@ -4,7 +4,8 @@ import json
 import uuid
 
 from IPython.core.getipython import get_ipython
-from IPython.core.magic import Magics, magics_class, cell_magic
+from IPython.core.magic import cell_magic, Magics, magics_class
+from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from IPython.display import display, Javascript
 from pkg_resources import resource_filename
 
@@ -16,14 +17,25 @@ class JupyterNotifyMagics(Magics):
         with open(resource_filename("jupyternotify", "js/init.js")) as jsFile:
             jsString = jsFile.read()
         display(Javascript(jsString))
-        self.options = json.dumps({
+        self.options = {
             "requireInteraction": require_interaction,
-            "body": "Cell Execution Has Finished!!",
             "icon": "/static/base/images/favicon.ico",
-        })
+        }
 
+    @magic_arguments()
+    @argument(
+        "-m",
+        "--message",
+        default="Cell Execution Has Finished!!", 
+        help="Custom notification message"
+    )
     @cell_magic
     def notify(self, line, cell):
+
+        # custom message
+        args = parse_argstring(self.notify, line)
+        self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")       
+
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
         notification_uuid = uuid.uuid4()
@@ -35,7 +47,7 @@ class JupyterNotifyMagics(Magics):
             jsString = jsFile.read()
         display(Javascript(jsString % {
             "notification_uuid": notification_uuid,
-            "options": self.options,
+            "options": json.dumps(self.options),
         }))
 
         # finally, if we generated an exception, print the traceback
