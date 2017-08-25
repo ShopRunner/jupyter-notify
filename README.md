@@ -76,3 +76,15 @@ The following options exist:
 - `require_interaction` - Boolean, default False. When this is true,
   notifications will remain on screen until dismissed. This feature is currently
   only available in Google Chrome.
+  
+ ## Custom Message
+
+You may specify what message you wish the notification to display:
+
+```
+%%notify -m "sleep for 5 secs"
+import time
+time.sleep(5)
+```
+
+<img src="https://s30.postimg.org/e0v1jbo8h/custom_message_img.png" alt="Jupyter notebook notification with custom message" width="750"/>
