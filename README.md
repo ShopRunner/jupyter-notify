@@ -2,8 +2,8 @@
 
 # A Jupyter Magic For Browser Notifications of Cell Completion
 
-<img src="https://s2.postimg.org/6g31wfeo9/Screen_Shot_2017-06-02_at_8.54.21_AM.png" alt="Jupyter notebook notification in Chrome" width="750"/>
-<img src="https://s11.postimg.org/t85gn6f2b/Screen_Shot_2017-06-02_at_8.56.06_AM.png" alt="Jupyter notebook notification in Firefox" width="750"/>
+<img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_chrome.png" alt="Jupyter notebook notification in Chrome" width="750"/>
+<img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_firefox.png" alt="Jupyter notebook notification in Firefox" width="750"/>
 
 This package provides a Jupyter notebook cell magic `%%notify` that notifies the user upon completion of a potentially long-running cell via a browser push notification. Use cases include long-running machine learning models, grid searches, or Spark computations. This magic allows you to navigate away to other work (or even another Mac desktop entirely) and still get a notification when your cell completes.
 
@@ -87,4 +87,4 @@ import time
 time.sleep(5)
 ```
 
-<img src="https://s30.postimg.org/e0v1jbo8h/custom_message_img.png" alt="Jupyter notebook notification with custom message" width="750"/>
+<img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_custom_message.png" alt="Jupyter notebook notification with custom message" width="750"/>
