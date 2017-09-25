@@ -1,6 +1,6 @@
 [![pypiv](https://img.shields.io/pypi/v/jupyternotify.svg)](https://pypi.python.org/pypi/jupyternotify)
 [![pyv](https://img.shields.io/pypi/pyversions/jupyternotify.svg)](https://pypi.python.org/pypi/jupyternotify)
-[![Licence](https://img.shields.io/pypi/l/jupyternotify.svg)](https://github.com/ShopRunner/jupyter-notify/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/pypi/l/jupyternotify.svg)](https://github.com/ShopRunner/jupyter-notify/blob/master/LICENSE.txt)
 [![Thanks](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/mdagost)
 
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/shoprunner-logo.svg" alt="ShopRunner logo" width="300"/>
