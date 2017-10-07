@@ -23,12 +23,20 @@ $(document).ready(
                                 Notification.permission = permission
                             }
                             if (Notification.permission === 'granted') {
-                                var notification = new Notification("Jupyter Notebook", notificationPayload)
+                                var notification = new Notification(document.title, notificationPayload)
+                                notification.onclick = function () {
+                                    window.focus();
+                                    this.close();
+                                };
                                 appendUniqueDiv()
                             }
                         })
                     } else if (Notification.permission === 'granted') {
-                        var notification = new Notification("Jupyter Notebook", notificationPayload)
+                        var notification = new Notification(document.title, notificationPayload)
+                        notification.onclick = function () {
+                            window.focus();
+                            this.close();
+                        };
                         appendUniqueDiv()
                     }
                 }

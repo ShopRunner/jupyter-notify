@@ -19,14 +19,14 @@ class JupyterNotifyMagics(Magics):
         display(Javascript(jsString))
         self.options = {
             "requireInteraction": require_interaction,
-            "icon": "/static/base/images/favicon.ico",
+            "icon": "https://avatars3.githubusercontent.com/u/7388996?v=4&s=400",
         }
 
     @magic_arguments()
     @argument(
         "-m",
         "--message",
-        default="Cell Execution Has Finished!!", 
+        default="Cell execution has finished!", 
         help="Custom notification message"
     )
     @cell_magic
