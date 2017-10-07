@@ -31,7 +31,6 @@ class JupyterNotifyMagics(Magics):
     )
     @cell_magic
     def notify(self, line, cell):
-
         # custom message
         args = parse_argstring(self.notify, line)
         self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")       
@@ -47,7 +46,7 @@ class JupyterNotifyMagics(Magics):
             jsString = jsFile.read()
         display(Javascript(jsString % {
             "notification_uuid": notification_uuid,
-            "options": json.dumps(self.options),
+            "options": json.dumps(self.options)
         }))
 
         # finally, if we generated an exception, print the traceback

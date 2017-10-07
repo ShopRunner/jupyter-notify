@@ -22,23 +22,15 @@ $(document).ready(
                             if(!('permission' in Notification)) {
                                 Notification.permission = permission
                             }
-                            if (Notification.permission === 'granted') {
-                                var notification = new Notification(document.title, notificationPayload)
-                                notification.onclick = function () {
-                                    window.focus();
-                                    this.close();
-                                };
-                                appendUniqueDiv()
-                            }
                         })
-                    } else if (Notification.permission === 'granted') {
-                        var notification = new Notification(document.title, notificationPayload)
-                        notification.onclick = function () {
-                            window.focus();
-                            this.close();
-                        };
-                        appendUniqueDiv()
-                    }
+                    } 
+                    var notification = new Notification(document.title + ' notebook', notificationPayload)
+                    appendUniqueDiv()
+                    notification.onclick = function () {
+                        window.focus();
+                        document.getElementById("%(notification_uuid)s").focus();
+                        this.close();
+                    };
                 }
             }
         }
