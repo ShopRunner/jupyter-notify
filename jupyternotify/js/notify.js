@@ -28,7 +28,6 @@ $(document).ready(
                     appendUniqueDiv()
                     notification.onclick = function () {
                         window.focus();
-                        document.getElementById("%(notification_uuid)s").focus();
                         this.close();
                     };
                 }
