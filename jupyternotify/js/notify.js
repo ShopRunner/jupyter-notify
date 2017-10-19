@@ -23,14 +23,16 @@ $(document).ready(
                                 Notification.permission = permission
                             }
                         })
-                    } 
+                    }
+                    if (Notification.permission === 'granted') {
                     var notification = new Notification(document.title + ' notebook', notificationPayload)
                     appendUniqueDiv()
                     notification.onclick = function () {
                         window.focus();
                         this.close();
-                    };
-                }
+                        };
+                    } 
+                }     
             }
         }
     }
