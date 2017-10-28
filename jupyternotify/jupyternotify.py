@@ -2,9 +2,10 @@
 # for more details on the implementation here
 import json
 import uuid
+import time
 
 from IPython.core.getipython import get_ipython
-from IPython.core.magic import cell_magic, Magics, magics_class
+from IPython.core.magic import cell_magic, Magics, magics_class, line_cell_magic
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from IPython.display import display, Javascript
 from pkg_resources import resource_filename
@@ -26,30 +27,30 @@ class JupyterNotifyMagics(Magics):
     @argument(
         "-m",
         "--message",
-        default="Cell Execution Has Finished!!", 
+        default="Cell Execution Has Finished!!",
         help="Custom notification message"
     )
-    @cell_magic
-    def notify(self, line, cell):
+    @line_cell_magic
+    def notify(self, line, cell=None):
 
+        # Duplicate options to allow notifications running in the same cell to
+        # have separate messages.
+        options = dict(self.options)
         # custom message
         args = parse_argstring(self.notify, line)
-        self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")       
+        options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")
 
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
         notification_uuid = uuid.uuid4()
 
-        output = get_ipython().run_cell(cell)
+        if cell is not None:
+            output = get_ipython().run_cell(cell)
 
         # display our browser notification using javascript
         with open(resource_filename("jupyternotify", "js/notify.js")) as jsFile:
             jsString = jsFile.read()
         display(Javascript(jsString % {
             "notification_uuid": notification_uuid,
-            "options": json.dumps(self.options),
+            "options": json.dumps(options),
         }))
-
-        # finally, if we generated an exception, print the traceback
-        if output.error_in_exec is not None:
-            output.raise_error()
