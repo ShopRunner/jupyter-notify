@@ -93,3 +93,52 @@ time.sleep(5)
 ```
 
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_custom_message.png" alt="Jupyter notebook notification with custom message" width="750"/>
+
+## Fire notification mid cell
+
+You may fire a notification using line magic. 
+
+```
+import time
+time.sleep(5)
+%notify -m "slept for 5 seconds."
+time.sleep(6)
+%notify -m "slept for 6 seconds."
+time.sleep(2)
+```
+
+
+## Automatically trigger notification after a certain cell execution time.
+
+You may fire a notification using line magic. 
+
+```
+import numpy as np
+import time
+# autonotify after 30 seconds
+%%autonotify -a 30
+```
+
+Then later...
+
+```
+# no notification
+time.sleep(29)
+```
+
+```
+# sends notification
+time.sleep(31)
+```
+
+
+## Use cell output as message.
+
+You may use the last line of the cell's output as the notification message. 
+
+```
+%%notify -o
+answer = 42
+'The answer is {}.'.format(answer)
+```
+Notification message: The answer is 42.
