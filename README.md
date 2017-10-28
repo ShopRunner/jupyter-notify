@@ -94,7 +94,7 @@ time.sleep(5)
 
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_custom_message.png" alt="Jupyter notebook notification with custom message" width="750"/>
 
-## Fire notification mid cell
+## Fire notification mid-cell
 
 You may fire a notification using line magic. 
 
