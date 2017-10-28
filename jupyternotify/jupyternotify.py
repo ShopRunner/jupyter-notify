@@ -33,6 +33,11 @@ class JupyterNotifyMagics(Magics):
         default="Cell Execution Has Finished!!",
         help="Custom notification message"
     )
+    @argument(
+        "-o",
+        "--output", action='store_true',
+        help="Use last output as message"
+    )
     @line_cell_magic
     def notify(self, line, cell=None):
 
@@ -51,6 +56,11 @@ class JupyterNotifyMagics(Magics):
         # Run cell if its cell magic
         if cell is not None:
             output = get_ipython().run_cell(cell)
+
+            # Get cell output and set as message
+            if args.output and output.result is not None:
+                options['body'] = output.result
+
 
         # display our browser notification using javascript
         self.display_notification(options, notification_uuid)
@@ -82,12 +92,18 @@ class JupyterNotifyMagics(Magics):
         default="Cell Execution Has Finished!!",
         help="Custom notification message"
     )
+    @argument(
+        "-o",
+        "--output", action='store_true',
+        help="Use last output as message"
+    )
     @line_magic
     def autonotify(self, line):
         # Record options
         args = parse_argstring(self.autonotify, line)
         self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")
         self.options['autonotify_after'] = args.after
+        self.options['autonotify_output'] = args.output
 
         ### Register events
         ip = get_ipython()
@@ -111,9 +127,18 @@ class JupyterNotifyMagics(Magics):
             self.run_start_time = time.time()
 
     def post_run_cell(self):
+        options = dict(self.options)
+
+        # Set last output as notification message
+        if self.options.get('autonotify_output'):
+            ip = get_ipython()
+            last_output = ip.user_global_ns['_']
+            if last_output is not None:
+                options['body'] = last_output
+
         # Check autonotify options and perform checks
         if self.check_after():
-            self.display_notification()
+            self.display_notification(options)
         # maybe add other triggers too
 
     def check_after(self):
