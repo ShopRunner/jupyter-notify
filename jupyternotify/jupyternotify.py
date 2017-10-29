@@ -13,8 +13,9 @@ from pkg_resources import resource_filename
 
 @magics_class
 class JupyterNotifyMagics(Magics):
-    run_start_time = None
     _events = None, None
+    run_start_time = None
+    notification_uuid = None
 
     def __init__(self, shell, require_interaction=False):
         super(JupyterNotifyMagics, self).__init__(shell)
@@ -52,6 +53,8 @@ class JupyterNotifyMagics(Magics):
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
         notification_uuid = uuid.uuid4()
+        # prevent autonotify from firing
+        self.notification_uuid = None
 
         # Run cell if its cell magic
         if cell is not None:
@@ -125,6 +128,7 @@ class JupyterNotifyMagics(Magics):
         # Initialize autonotify
         if self.options.get('autonotify_after'):
             self.run_start_time = time.time()
+        self.notification_uuid = uuid.uuid4()
 
     def post_run_cell(self):
         options = dict(self.options)
@@ -133,12 +137,14 @@ class JupyterNotifyMagics(Magics):
         if self.options.get('autonotify_output'):
             ip = get_ipython()
             last_output = ip.user_global_ns['_']
-            if last_output is not None:
+            if last_output is not None and len(str(last_output)):
                 options['body'] = last_output
 
         # Check autonotify options and perform checks
-        if self.check_after():
-            self.display_notification(options)
+        if not self.notification_uuid:
+            pass # allow notify to stop autonotify
+        elif self.check_after():
+            self.display_notification(options, self.notification_uuid)
         # maybe add other triggers too
 
     def check_after(self):
