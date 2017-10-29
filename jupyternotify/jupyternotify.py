@@ -13,8 +13,11 @@ from pkg_resources import resource_filename
 
 @magics_class
 class JupyterNotifyMagics(Magics):
+    # pointer to *_run_cell events
     _events = None, None
+    # start time of cell execution
     run_start_time = None
+    # uuid for autonotify
     notification_uuid = None
 
     def __init__(self, shell, require_interaction=False):
@@ -53,16 +56,20 @@ class JupyterNotifyMagics(Magics):
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
         notification_uuid = uuid.uuid4()
-        # prevent autonotify from firing
-        self.notification_uuid = None
 
         # Run cell if its cell magic
         if cell is not None:
             output = get_ipython().run_cell(cell)
 
+            # prevent autonotify from firing with notify cell magic
+            self.__class__.notification_uuid = None
+
             # Get cell output and set as message
             if args.output and output.result is not None:
-                options['body'] = output.result
+                try:
+                    options['body'] = str(output.result)
+                except ValueError:
+                    pass # can't convert to string. Use default message
 
 
         # display our browser notification using javascript
@@ -128,24 +135,30 @@ class JupyterNotifyMagics(Magics):
         # Initialize autonotify
         if self.options.get('autonotify_after'):
             self.run_start_time = time.time()
-        self.notification_uuid = uuid.uuid4()
+        self.__class__.notification_uuid = uuid.uuid4()
 
     def post_run_cell(self):
         options = dict(self.options)
 
         # Set last output as notification message
         if self.options.get('autonotify_output'):
-            ip = get_ipython()
-            last_output = ip.user_global_ns['_']
-            if last_output is not None and len(str(last_output)):
-                options['body'] = last_output
+            last_output = get_ipython().user_global_ns['_']
+            # Don't use output if it's None or empty (but still allow False, 0, etc.)
+            try:
+                if last_output is not None and len(str(last_output)):
+                    options['body'] = str(last_output)
+            except ValueError:
+                pass # can't convert to string. Use default message
 
+        # allow notify to stop autonotify
+        if not self.__class__.notification_uuid: return
         # Check autonotify options and perform checks
-        if not self.notification_uuid:
-            pass # allow notify to stop autonotify
-        elif self.check_after():
-            self.display_notification(options, self.notification_uuid)
-        # maybe add other triggers too
+        elif self.check_after(): pass
+        # maybe add other triggers here too
+        # example/idea: autonotify if browser window not in focus
+        else: return
+        self.display_notification(options, self.__class__.notification_uuid)
+
 
     def check_after(self):
         # Check if the time elapsed is over the specified time.
