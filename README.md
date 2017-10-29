@@ -86,7 +86,7 @@ The following options exist:
 
 You may specify what message you wish the notification to display:
 
-```
+```python
 %%notify -m "sleep for 5 secs"
 import time
 time.sleep(5)
@@ -98,7 +98,7 @@ time.sleep(5)
 
 You may fire a notification using line magic. 
 
-```
+```python
 import time
 time.sleep(5)
 %notify -m "slept for 5 seconds."
@@ -110,33 +110,33 @@ time.sleep(2)
 
 ## Automatically trigger notification after a certain cell execution time.
 
-You may fire a notification using line magic. 
+Using the `autonotify` line magic, you can have notifications automatically trigger on cell finish if the execution time is longer than some threshold you set (in seconds) using `%autonotify --after <seconds>` or `%autonotify -a <seconds>`. 
 
-```
+```python
 import numpy as np
 import time
 # autonotify after 30 seconds
-%%autonotify -a 30
+%autonotify -a 30
 ```
 
 Then later...
 
-```
+```python
 # no notification
 time.sleep(29)
 ```
 
-```
+```python
 # sends notification
-time.sleep(31)
+time.sleep(30)
 ```
-
+`autonotify` also takes the arguments `--message` / `-m` and `--output` / `-o`.
 
 ## Use cell output as message.
 
-You may use the last line of the cell's output as the notification message. 
+You may use the last line of the cell's output as the notification message using `--output` or `-o`. 
 
-```
+```python
 %%notify -o
 answer = 42
 'The answer is {}.'.format(answer)
