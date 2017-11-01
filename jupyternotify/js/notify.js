@@ -24,8 +24,10 @@ $(document).ready(
                             }
                         })
                     }
+
+                    window.alert(notificationPayload)
                     if (Notification.permission === 'granted') {
-                    var notification = new Notification(document.title + ' notebook', notificationPayload)
+                    var notification = new Notification("Jupyter Notebook", notificationPayload)
                     appendUniqueDiv()
                     notification.onclick = function () {
                         window.focus();
