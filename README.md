@@ -108,14 +108,14 @@ time.sleep(2)
 ```
 
 
-## Automatically trigger notification after a certain cell execution time.
+## Automatically trigger notification after a certain cell execution time
 
-Using the `autonotify` line magic, you can have notifications automatically trigger on cell finish if the execution time is longer than some threshold (in seconds) using `%autonotify --after <seconds>` or `%autonotify -a <seconds>`. 
+Using the `autonotify` line magic, you can have notifications automatically trigger on **cell finish** if the execution time is longer than some threshold (in seconds) using `%autonotify --after <seconds>` or `%autonotify -a <seconds>`. 
 
 ```python
 import numpy as np
 import time
-# autonotify after 30 seconds
+# autonotify on completion for cells that run longer than 30 seconds
 %autonotify -a 30
 ```
 
@@ -132,7 +132,7 @@ time.sleep(31)
 ```
 `autonotify` also takes the arguments `--message` / `-m` and `--output` / `-o`.
 
-## Use cell output as message.
+## Use cell output as message
 
 You may use the last line of the cell's output as the notification message using `--output` or `-o`. 
 
