@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 ## [0.1.13] - 2017-11-03
 ### Added
 - Added line magic %notify to trigger notifications mid-cell (from @bensteers)
-- Added %autonotify line magice to automatically notify after a certain length of time threshold (from @bensteers)
+- Added %autonotify line magic to automatically notify after a certain length of time threshold (from @bensteers)
 - Added --output/-o option to use cell output as message (from @bensteers)
 - Added a jupyter notebook to run through the tests specified in the README
 
