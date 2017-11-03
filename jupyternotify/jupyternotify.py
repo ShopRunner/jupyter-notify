@@ -151,12 +151,15 @@ class JupyterNotifyMagics(Magics):
                 pass # can't convert to string. Use default message
 
         # allow notify to stop autonotify
-        if not self.__class__.notification_uuid: return
+        if not self.__class__.notification_uuid: 
+            return
         # Check autonotify options and perform checks
-        elif self.check_after(): pass
+        elif self.check_after(): 
+            pass
         # maybe add other triggers here too
         # example/idea: autonotify if browser window not in focus
-        else: return
+        else: 
+            return
         self.display_notification(options, self.__class__.notification_uuid)
 
 
