@@ -96,7 +96,7 @@ time.sleep(5)
 
 ## Fire notification mid-cell
 
-You may fire a notification using line magic. 
+You may also fire a notification in the middle of a cell using line magic.
 
 ```python
 import time

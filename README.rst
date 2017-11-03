@@ -1,3 +1,5 @@
+|pypiv| |pyv| |License| |Thanks|
+
 A Jupyter Magic For Browser Notifications of Cell Completion
 ============================================================
 
@@ -79,3 +81,101 @@ To test the extension, try
     %%notify
     import time
     time.sleep(5)
+
+Options
+-------
+
+You may specify options while loading the magic:
+
+.. code:: python
+
+    import jupyternotify
+    ip = get_ipython()
+    ip.register_magics(jupyternotify.JupyterNotifyMagics(
+        ip,
+        option_name="option_value"
+    ))
+
+The following options exist: - ``require_interaction`` - Boolean,
+default False. When this is true, notifications will remain on screen
+until dismissed. This feature is currently only available in Google
+Chrome.
+
+Custom Message
+--------------
+
+You may specify what message you wish the notification to display:
+
+.. code:: python
+
+    %%notify -m "sleep for 5 secs"
+    import time
+    time.sleep(5)
+
+Fire notification mid-cell
+--------------------------
+
+You may also fire a notification in the middle of a cell using line
+magic.
+
+.. code:: python
+
+    import time
+    time.sleep(5)
+    %notify -m "slept for 5 seconds."
+    time.sleep(6)
+    %notify -m "slept for 6 seconds."
+    time.sleep(2)
+
+Automatically trigger notification after a certain cell execution time
+----------------------------------------------------------------------
+
+Using the ``autonotify`` line magic, you can have notifications
+automatically trigger on **cell finish** if the execution time is longer
+than some threshold (in seconds) using ``%autonotify --after <seconds>``
+or ``%autonotify -a <seconds>``.
+
+.. code:: python
+
+    import numpy as np
+    import time
+    # autonotify on completion for cells that run longer than 30 seconds
+    %autonotify -a 30
+
+Then later...
+
+.. code:: python
+
+    # no notification
+    time.sleep(29)
+
+.. code:: python
+
+    # sends notification on finish
+    time.sleep(31)
+
+``autonotify`` also takes the arguments ``--message`` / ``-m`` and
+``--output`` / ``-o``.
+
+Use cell output as message
+--------------------------
+
+You may use the last line of the cell's output as the notification
+message using ``--output`` or ``-o``.
+
+.. code:: python
+
+    %%notify -o
+    answer = 42
+    'The answer is {}.'.format(answer)
+
+Notification message: The answer is 42.
+
+.. |pypiv| image:: https://img.shields.io/pypi/v/jupyternotify.svg
+   :target: https://pypi.python.org/pypi/jupyternotify
+.. |pyv| image:: https://img.shields.io/pypi/pyversions/jupyternotify.svg
+   :target: https://pypi.python.org/pypi/jupyternotify
+.. |License| image:: https://img.shields.io/pypi/l/jupyternotify.svg
+   :target: https://github.com/ShopRunner/jupyter-notify/blob/master/LICENSE.txt
+.. |Thanks| image:: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
+   :target: https://saythanks.io/to/mdagost
