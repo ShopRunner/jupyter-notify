@@ -26,14 +26,14 @@ class JupyterNotifyMagics(Magics):
     @argument(
         "-m",
         "--message",
-        default="Cell execution has finished!", 
+        default="Cell execution has finished!",
         help="Custom notification message"
     )
     @cell_magic
     def notify(self, line, cell):
         # custom message
         args = parse_argstring(self.notify, line)
-        self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")       
+        self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")
 
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)

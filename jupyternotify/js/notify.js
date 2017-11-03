@@ -24,8 +24,6 @@ $(document).ready(
                             }
                         })
                     }
-
-                    window.alert(notificationPayload)
                     if (Notification.permission === 'granted') {
                     var notification = new Notification("Jupyter Notebook", notificationPayload)
                     appendUniqueDiv()
