@@ -86,10 +86,59 @@ The following options exist:
 
 You may specify what message you wish the notification to display:
 
-```
+```python
 %%notify -m "sleep for 5 secs"
 import time
 time.sleep(5)
 ```
 
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_custom_message.png" alt="Jupyter notebook notification with custom message" width="750"/>
+
+## Fire notification mid-cell
+
+You may also fire a notification in the middle of a cell using line magic.
+
+```python
+import time
+time.sleep(5)
+%notify -m "slept for 5 seconds."
+time.sleep(6)
+%notify -m "slept for 6 seconds."
+time.sleep(2)
+```
+
+
+## Automatically trigger notification after a certain cell execution time
+
+Using the `autonotify` line magic, you can have notifications automatically trigger on **cell finish** if the execution time is longer than some threshold (in seconds) using `%autonotify --after <seconds>` or `%autonotify -a <seconds>`. 
+
+```python
+import numpy as np
+import time
+# autonotify on completion for cells that run longer than 30 seconds
+%autonotify -a 30
+```
+
+Then later...
+
+```python
+# no notification
+time.sleep(29)
+```
+
+```python
+# sends notification on finish
+time.sleep(31)
+```
+`autonotify` also takes the arguments `--message` / `-m` and `--output` / `-o`.
+
+## Use cell output as message
+
+You may use the last line of the cell's output as the notification message using `--output` or `-o`. 
+
+```python
+%%notify -o
+answer = 42
+'The answer is {}.'.format(answer)
+```
+Notification message: The answer is 42.
