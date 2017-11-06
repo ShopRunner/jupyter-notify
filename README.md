@@ -10,7 +10,7 @@
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_chrome.png" alt="Jupyter notebook notification in Chrome" width="750"/>
 <img src="https://s3.amazonaws.com/shoprunner-github-logo/jupyter_firefox.png" alt="Jupyter notebook notification in Firefox" width="750"/>
 
-This package provides a Jupyter notebook cell magic `%%notify` that notifies the user upon completion of a potentially long-running cell via a browser push notification. Use cases include long-running machine learning models, grid searches, or Spark computations. This magic allows you to navigate away to other work (or even another Mac desktop entirely) and still get a notification when your cell completes.
+This package provides a Jupyter notebook cell magic `%%notify` that notifies the user upon completion of a potentially long-running cell via a browser push notification. Use cases include long-running machine learning models, grid searches, or Spark computations. This magic allows you to navigate away to other work (or even another Mac desktop entirely) and still get a notification when your cell completes.  Clicking on the body of the notification will bring you directly to the browser window and tab with the notebook, even if you're on a different desktop (clicking the "Close" button in the notification will keep you where you are).
 
 ### Supported browsers
 The extension has currently been tested in Chrome (Version:  58.0.3029) and Firefox (Version: 53.0.3). 

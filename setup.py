@@ -16,7 +16,7 @@ with open('LICENSE.txt') as l:
 
 setup(
     name='jupyternotify',
-    version='0.1.13',
+    version='0.1.14',
     description='A Jupyter Notebook %%magic for Browser Notifications of Cell Completion',
     long_description=readme+'\n\n'+authors+'\nLicense\n-------\n'+license,
     author='Michelangelo D\'Agostino',
