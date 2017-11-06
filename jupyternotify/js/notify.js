@@ -22,16 +22,17 @@ $(document).ready(
                             if(!('permission' in Notification)) {
                                 Notification.permission = permission
                             }
-                            if (Notification.permission === 'granted') {
-                                var notification = new Notification("Jupyter Notebook", notificationPayload)
-                                appendUniqueDiv()
-                            }
                         })
-                    } else if (Notification.permission === 'granted') {
-                        var notification = new Notification("Jupyter Notebook", notificationPayload)
-                        appendUniqueDiv()
                     }
-                }
+                    if (Notification.permission === 'granted') {
+                    var notification = new Notification("Jupyter Notebook", notificationPayload)
+                    appendUniqueDiv()
+                    notification.onclick = function () {
+                        window.focus();
+                        this.close();
+                        };
+                    } 
+                }     
             }
         }
     }

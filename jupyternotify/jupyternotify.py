@@ -34,7 +34,7 @@ class JupyterNotifyMagics(Magics):
     @argument(
         "-m",
         "--message",
-        default="Cell Execution Has Finished!!",
+        default="Cell execution has finished!",
         help="Custom notification message"
     )
     @argument(
