@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 
+## [0.1.14] - 2017-11-06
+### Added
+- Added feature where clicking on the notification body changes focus to the window and tab with the notebook (from @Darel13712)
+
 ## [0.1.13] - 2017-11-03
 ### Added
 - Added line magic %notify to trigger notifications mid-cell (from @bensteers)

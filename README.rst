@@ -9,6 +9,10 @@ a browser push notification. Use cases include long-running machine
 learning models, grid searches, or Spark computations. This magic allows
 you to navigate away to other work (or even another Mac desktop
 entirely) and still get a notification when your cell completes.
+Clicking on the body of the notification will bring you directly to the
+browser window and tab with the notebook, even if you're on a different
+desktop (clicking the "Close" button in the notification will keep you
+where you are).
 
 Supported browsers
 ~~~~~~~~~~~~~~~~~~
