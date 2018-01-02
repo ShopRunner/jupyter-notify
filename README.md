@@ -40,18 +40,14 @@ jupyter notebook
 ## Usage
 ### Load inside a Jupyter notebook:
 ``` python
-import jupyternotify
-ip = get_ipython()
-ip.register_magics(jupyternotify.JupyterNotifyMagics)
+%load_ext jupyternotify
 ```
 
 ### Automatically load in all notebooks
 Add the following lines to your ipython startup file:
 ```
-c.InteractiveShellApp.exec_lines = [
-	'import jupyternotify',
-	'ip = get_ipython()',
-	'ip.register_magics(jupyternotify.JupyterNotifyMagics)'
+c.InteractiveShellApp.extensions = [
+    'jupyternotify'
 ]
 ```
 The .ipython startup file can be generated with `ipython profile create [profilename]` and will create a configuration file at `~/.ipython/profile_[profilename]/ipython_config.py'`. Leaving [profilename] blank will create a default profile (see [this](http://ipython.org/ipython-doc/dev/config/intro.html) for more info).
@@ -66,7 +62,9 @@ time.sleep(5)
 
 ## Options
 
-You may specify options while loading the magic:
+NOTE: Currently options cannot be used with `%load_ext` or the ipython startup file instructions above. 
+
+To load the magic with options, you should load it manually by doing the following:
 
 ```python
 import jupyternotify
@@ -77,11 +75,22 @@ ip.register_magics(jupyternotify.JupyterNotifyMagics(
 ))
 ```
 
+or add this to your ipython startup file:
+
+```python
+c.InteractiveShellApp.exec_lines = [
+	'import jupyternotify',
+	'ip = get_ipython()',
+	'ip.register_magics(jupyternotify.JupyterNotifyMagics)'
+]
+```
+
 The following options exist:
 - `require_interaction` - Boolean, default False. When this is true,
   notifications will remain on screen until dismissed. This feature is currently
   only available in Google Chrome.
-  
+
+
 ## Custom Message
 
 You may specify what message you wish the notification to display:
