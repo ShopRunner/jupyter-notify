@@ -79,9 +79,9 @@ or add this to your ipython startup file:
 
 ```python
 c.InteractiveShellApp.exec_lines = [
-	'import jupyternotify',
-	'ip = get_ipython()',
-        'ip.register_magics(jupyternotify.JupyterNotifyMagics(ip, option_name="option_value"))'
+    'import jupyternotify',
+    'ip = get_ipython()',
+    'ip.register_magics(jupyternotify.JupyterNotifyMagics(ip, option_name="option_value"))'
 ]
 ```
 
