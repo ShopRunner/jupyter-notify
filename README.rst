@@ -54,9 +54,7 @@ Load inside a Jupyter notebook:
 
 .. code:: python
 
-    import jupyternotify
-    ip = get_ipython()
-    ip.register_magics(jupyternotify.JupyterNotifyMagics)
+    %load_ext jupyternotify
 
 Automatically load in all notebooks
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -65,10 +63,8 @@ Add the following lines to your ipython startup file:
 
 ::
 
-    c.InteractiveShellApp.exec_lines = [
-        'import jupyternotify',
-        'ip = get_ipython()',
-        'ip.register_magics(jupyternotify.JupyterNotifyMagics)'
+    c.InteractiveShellApp.extensions = [
+        'jupyternotify'
     ]
 
 The .ipython startup file can be generated with
@@ -89,7 +85,11 @@ To test the extension, try
 Options
 -------
 
-You may specify options while loading the magic:
+NOTE: Currently options cannot be used with ``%load_ext`` or the ipython
+startup file instructions above.
+
+To load the magic with options, you should load it manually by doing the
+following:
 
 .. code:: python
 
@@ -99,6 +99,16 @@ You may specify options while loading the magic:
         ip,
         option_name="option_value"
     ))
+
+or add this to your ipython startup file:
+
+.. code:: python
+
+    c.InteractiveShellApp.exec_lines = [
+        'import jupyternotify',
+        'ip = get_ipython()',
+        'ip.register_magics(jupyternotify.JupyterNotifyMagics(ip, option_name="option_value"))'
+    ]
 
 The following options exist: - ``require_interaction`` - Boolean,
 default False. When this is true, notifications will remain on screen
