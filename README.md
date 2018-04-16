@@ -15,7 +15,9 @@ This package provides a Jupyter notebook cell magic `%%notify` that notifies the
 ### Supported browsers
 The extension has currently been tested in Chrome (Version:  58.0.3029) and Firefox (Version: 53.0.3). 
 
-Note: Firefox also makes an audible bell sound when the notification fires (the sound can be turned off in OS X as described [here](https://stackoverflow.com/questions/27491672/disable-default-alert-sound-for-firefox-web-notifications)).
+**Note**: Firefox also makes an audible bell sound when the notification fires (the sound can be turned off in OS X as described [here](https://stackoverflow.com/questions/27491672/disable-default-alert-sound-for-firefox-web-notifications)).
+
+**Note for Remote Servers**: This extension will work on remote servers as well.  However, you'll need to have the jupyter notebook running on https. You can find instructions [here](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html).
 
 ## Import the repo
 To use the package, install it via pip directly:
