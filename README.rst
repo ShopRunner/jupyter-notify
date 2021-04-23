@@ -190,6 +190,6 @@ Notification message: The answer is 42.
 .. |pyv| image:: https://img.shields.io/pypi/pyversions/jupyternotify.svg
    :target: https://pypi.python.org/pypi/jupyternotify
 .. |License| image:: https://img.shields.io/pypi/l/jupyternotify.svg
-   :target: https://github.com/ShopRunner/jupyter-notify/blob/master/LICENSE.txt
+   :target: https://github.com/ShopRunner/jupyter-notify/blob/main/LICENSE.txt
 .. |Thanks| image:: https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg
    :target: https://saythanks.io/to/mdagost
