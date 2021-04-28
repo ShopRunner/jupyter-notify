@@ -42,6 +42,12 @@ class JupyterNotifyMagics(Magics):
         "--output", action='store_true',
         help="Use last output as message"
     )
+    @argument(
+        "-b",
+        "--only-in-background",
+        action='store_true',
+        help="Only notify if the Jupyter notebook is in the background"
+    )
     @line_cell_magic
     def notify(self, line, cell=None):
 
@@ -52,6 +58,8 @@ class JupyterNotifyMagics(Magics):
         # custom message
         args = parse_argstring(self.notify, line)
         options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")
+
+        options['only_in_background'] = args.only_in_background
 
         # generate a uuid so that we only deliver this notification once, not again
         # when the browser reloads (we append a div to check that)
@@ -107,6 +115,12 @@ class JupyterNotifyMagics(Magics):
         "--output", action='store_true',
         help="Use last output as message"
     )
+    @argument(
+        "-b",
+        "--only-in-background",
+        action='store_true',
+        help="Only notify if the Jupyter notebook is in the background"
+    )
     @line_magic
     def autonotify(self, line):
         # Record options
@@ -114,6 +128,7 @@ class JupyterNotifyMagics(Magics):
         self.options["body"] = args.message.lstrip("\'\"").rstrip("\'\"")
         self.options['autonotify_after'] = args.after
         self.options['autonotify_output'] = args.output
+        self.options['only_in_background'] = args.only_in_background
 
         ### Register events
         ip = get_ipython()
