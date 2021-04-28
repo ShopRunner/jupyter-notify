@@ -16,6 +16,12 @@ $(document).ready(
             // was already sent
             if (document.getElementById("%(notification_uuid)s") === null) {
                 var notificationPayload = %(options)s;
+
+                // We have a notification but the window is active
+                if (notificationPayload.only_in_background && !window.jupyterNotifyIsInBackground) {
+                    appendUniqueDiv();
+                    return;
+                }
                 if (Notification.permission !== 'denied') {
                     if (Notification.permission !== 'granted') { 
                         Notification.requestPermission(function (permission) {
